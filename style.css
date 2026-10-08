@@ -1,0 +1,238 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    background: #020005;
+    font-family: Arial, sans-serif;
+}
+
+.scene {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    overflow: hidden;
+}
+
+/* Soft background glow */
+.scene::before {
+    content: "";
+    position: absolute;
+    width: 420px;
+    height: 420px;
+
+    background: #ff0055;
+    opacity: 0.08;
+
+    border-radius: 50%;
+    filter: blur(100px);
+
+    animation: backgroundGlow 3s infinite alternate;
+}
+
+/* Heart */
+.heart {
+    position: relative;
+    z-index: 5;
+
+    color: #ff174f;
+    font-size: 180px;
+    line-height: 1;
+
+    text-shadow:
+        0 0 5px #ff174f,
+        0 0 15px #ff174f,
+        0 0 30px #ff174f,
+        0 0 60px #ff174f;
+
+    animation: heartbeat 1.4s infinite ease-in-out;
+}
+
+/* Heartbeat */
+@keyframes heartbeat {
+    0%, 100% {
+        transform: scale(1);
+    }
+
+    15% {
+        transform: scale(1.12);
+    }
+
+    30% {
+        transform: scale(1);
+    }
+
+    45% {
+        transform: scale(1.08);
+    }
+
+    60% {
+        transform: scale(1);
+    }
+}
+
+/* Name */
+.name {
+    position: relative;
+    z-index: 5;
+
+    margin-top: 25px;
+
+    color: white;
+    font-size: 38px;
+    font-weight: bold;
+
+    letter-spacing: 4px;
+    text-align: center;
+
+    text-shadow:
+        0 0 5px white,
+        0 0 12px #ff174f,
+        0 0 25px #ff174f;
+
+    animation: nameGlow 2s infinite alternate;
+}
+
+.name span {
+    display: block;
+
+    margin-top: 12px;
+
+    color: #ff8aaa;
+    font-size: 19px;
+    font-weight: normal;
+
+    letter-spacing: 3px;
+
+    text-shadow:
+        0 0 5px #ff174f,
+        0 0 12px #ff174f;
+}
+
+/* Name glow */
+@keyframes nameGlow {
+    from {
+        opacity: 0.8;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* Background glow animation */
+@keyframes backgroundGlow {
+    from {
+        transform: scale(0.8);
+        opacity: 0.05;
+    }
+
+    to {
+        transform: scale(1.2);
+        opacity: 0.12;
+    }
+}
+
+/* Small floating particles */
+.particle {
+    position: absolute;
+
+    width: 4px;
+    height: 4px;
+
+    border-radius: 50%;
+
+    background: #ff4778;
+
+    box-shadow:
+        0 0 6px #ff174f,
+        0 0 12px #ff174f;
+
+    animation: floatParticle 5s linear forwards;
+
+    pointer-events: none;
+}
+
+@keyframes floatParticle {
+    0% {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+
+    15% {
+        opacity: 0.8;
+    }
+
+    80% {
+        opacity: 0.5;
+    }
+
+    100% {
+        transform: translateY(-100vh);
+        opacity: 0;
+    }
+}
+
+/* Sparkles */
+.sparkle {
+    position: absolute;
+
+    z-index: 3;
+
+    color: #ffb3c7;
+    font-size: 13px;
+
+    text-shadow:
+        0 0 5px #ff174f,
+        0 0 12px #ff174f;
+
+    animation: sparkle 2s ease-in-out forwards;
+
+    pointer-events: none;
+}
+
+@keyframes sparkle {
+    0% {
+        opacity: 0;
+        transform: scale(0) rotate(0deg);
+    }
+
+    40% {
+        opacity: 1;
+        transform: scale(1) rotate(90deg);
+    }
+
+    100% {
+        opacity: 0;
+        transform: scale(0) rotate(180deg);
+    }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+
+    .heart {
+        font-size: 135px;
+    }
+
+    .name {
+        font-size: 27px;
+        letter-spacing: 3px;
+    }
+
+    .name span {
+        font-size: 16px;
+        letter-spacing: 2px;
+    }
+}
